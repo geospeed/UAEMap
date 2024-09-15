@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    var cityData;
+    function fetchJSONData() {
+        fetch("./uaemarker.json")
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error
+                        (`HTTP error! Status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then((data) =>
+                cityData = data)
+            .catch((error) =>
+                console.error("Unable to fetch data:", error));
+    }
+    fetchJSONData();
+</script> 
+    <link rel="stylesheet" href="uaemarker.css">
+  
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+<script src="uaemarker.js"></script>
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <div class="highcharts-description">
+        This demo uses a <code>mappoint</code> series with mapmarker symbols.
+    </div>
+</figure>
+
+</body>
+</html>
